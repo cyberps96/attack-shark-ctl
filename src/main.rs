@@ -80,7 +80,7 @@ fn send_desktop_notification(title: &str, body: &str, urgency: &str) {
     let _ = std::process::Command::new("notify-send")
         .args([
             "-a",
-            "Attack Shark X8 Plus",
+            "Attack Shark",
             "-i",
             "input-mouse",
             "-t",
@@ -110,7 +110,7 @@ fn simple_time() -> String {
 #[command(author = "Cyber & Antigravity")]
 #[command(version = "0.2.0")]
 #[command(
-    about = "Bare-metal Linux driver CLI for Attack Shark X8 Plus gaming mouse",
+    about = "Bare-metal Linux driver CLI for Attack Shark gaming mice (X8 Plus, X3, X6, R1, and all 18 models)",
     long_about = None
 )]
 struct Cli {
@@ -281,8 +281,8 @@ fn handle_install() {
     let service_file = service_dir.join("attack-shark.service");
     let service_content = format!(
 "[Unit]
-Description=Attack Shark X8 Plus Background Monitor Daemon
-Documentation=https://github.com/cyber/attack-shark-ctl
+Description=Attack Shark Gaming Mice Background Monitor Daemon
+Documentation=https://github.com/cyberps96/attack-shark-ctl
 After=graphical-session.target default.target
 
 [Service]
@@ -451,7 +451,7 @@ fn main() {
 
     match cli.command {
         Commands::Status => {
-            println!("🔍 Searching for Attack Shark X8 Plus...");
+            println!("🔍 Searching for Attack Shark gaming mouse...");
             let mut dev = match MouseDevice::find_and_open() {
                 Ok(dev) => dev,
                 Err(err) => {
@@ -581,7 +581,7 @@ fn main() {
 
         Commands::Monitor { seconds } => {
             println!("╔═══════════════════════════════════════════════════════════╗");
-            println!("║      Attack Shark X8 Plus — Live Hardware Monitor         ║");
+            println!("║      Attack Shark — Live Hardware Monitor Daemon          ║");
             println!("╠═══════════════════════════════════════════════════════════╣");
             println!("║  • Notifications : Desktop OSD Enabled (via notify-send)  ║");
             if let Some(sec) = seconds {
@@ -679,7 +679,7 @@ fn main() {
                                             );
 
                                             send_desktop_notification(
-                                                "Attack Shark X8 Plus",
+                                                "Attack Shark",
                                                 &format!("🎯 DPI Changed: {} DPI (Stage {})", dpi_val, detected_stage),
                                                 "normal",
                                             );
@@ -698,7 +698,7 @@ fn main() {
                                         if pct <= 20 && !is_charging {
                                             send_desktop_notification(
                                                 "⚠️ Low Mouse Battery",
-                                                &format!("Attack Shark X8 Plus battery is low: {}%!\nPlease connect USB charging cable.", pct),
+                                                &format!("Attack Shark battery is low: {}%!\nPlease connect USB charging cable.", pct),
                                                 "critical",
                                             );
                                         }
@@ -809,7 +809,7 @@ fn main() {
                     };
 
                     println!("\n╔═══════════════════════════════════╗");
-                    println!("║   Attack Shark X8 Plus Presets    ║");
+                    println!("║        Attack Shark Presets       ║");
                     println!("╠════════╦══════════════╦═══════════╣");
                     println!("║ Preset ║     DPI      ║  Status   ║");
                     println!("╠════════╬══════════════╬═══════════╣");

@@ -1,6 +1,34 @@
 pub const VENDOR_ID: u16 = 0x1d57;
-pub const PRODUCT_ID_WIRED: u16 = 0x2124;
 pub const PRODUCT_ID_WIRELESS: u16 = 0xfa60;
+#[allow(dead_code)]
+pub const PRODUCT_ID_WIRED: u16 = 0x2124;
+
+/// All 18 Wired USB Product IDs extracted directly from AttackShark.exe firmware tables (MS_1 to MS_18)
+pub const SUPPORTED_WIRED_PIDS: &[u16] = &[
+    0x2124, // MS_12: Attack Shark X8 Plus
+    0x2055, // MS_1
+    0x201B, // MS_2
+    0xFA61, // MS_3
+    0xFA55, // MS_4
+    0x201C, // MS_5
+    0x2111, // MS_6
+    0x2125, // MS_7
+    0x2120, // MS_8
+    0x2126, // MS_9
+    0x2122, // MS_10
+    0x212C, // MS_11
+    0x2155, // MS_13
+    0x2224, // MS_14
+    0x215A, // MS_15
+    0x211D, // MS_16
+    0x211F, // MS_17
+    0x2121, // MS_18
+];
+
+#[allow(dead_code)]
+pub fn is_supported_wired(pid: u16) -> bool {
+    SUPPORTED_WIRED_PIDS.contains(&pid)
+}
 
 pub const REPORT_ID_DPI: u8 = 0x04;
 pub const REPORT_ID_CONFIG: u8 = 0x06;

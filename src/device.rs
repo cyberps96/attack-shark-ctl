@@ -7,8 +7,8 @@ use std::time::Duration;
 
 use crate::protocol::{
     build_query_packet, build_set_polling_rate_packet, DpiConfig, PollingRate,
-    PRODUCT_ID_WIRED, PRODUCT_ID_WIRELESS, REPORT_ID_CONFIG, REPORT_ID_DPI, REPORT_ID_QUERY,
-    VENDOR_ID,
+    PRODUCT_ID_WIRELESS, REPORT_ID_CONFIG, REPORT_ID_DPI, REPORT_ID_QUERY,
+    SUPPORTED_WIRED_PIDS, VENDOR_ID,
 };
 
 // Linux ioctl macro definitions for HIDIOCSFEATURE and HIDIOCGFEATURE
@@ -53,12 +53,15 @@ impl MouseDevice {
 
             if let Ok(uevent_content) = fs::read_to_string(&uevent_path) {
                 let vid_str = format!("{:04X}", VENDOR_ID);
-                let pid_wired = format!("{:04X}", PRODUCT_ID_WIRED);
                 let pid_wireless = format!("{:04X}", PRODUCT_ID_WIRELESS);
 
                 let is_our_vendor = uevent_content.to_uppercase().contains(&vid_str);
-                let is_wired = uevent_content.to_uppercase().contains(&pid_wired);
                 let is_wireless = uevent_content.to_uppercase().contains(&pid_wireless);
+                let is_wired = SUPPORTED_WIRED_PIDS.iter().any(|&pid| {
+                    uevent_content
+                        .to_uppercase()
+                        .contains(&format!("{:04X}", pid))
+                });
 
                 if is_our_vendor && (is_wired || is_wireless) {
                     if let Ok(rdesc_bytes) = fs::read(&rdesc_path) {
@@ -82,7 +85,7 @@ impl MouseDevice {
             return Self::open_device(dev_node, is_wireless);
         }
 
-        Err("Attack Shark X8 Plus mouse was not found. Please make sure the USB cable or 2.4G wireless dongle is plugged in.".to_string())
+        Err("Attack Shark gaming mouse was not found. Please make sure the USB cable or 2.4G wireless dongle is plugged in.".to_string())
     }
 
     fn open_device(path: PathBuf, is_wireless: bool) -> Result<Self, String> {

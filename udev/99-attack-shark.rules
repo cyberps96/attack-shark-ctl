@@ -2,8 +2,7 @@
 # Allows unprivileged user space access to bare-metal /dev/hidraw nodes
 #
 # Supported Devices:
-#   - Attack Shark X8 Plus (Wired mode: 1d57:2124)
-#   - Attack Shark X8 Plus (2.4G Wireless Dongle: 1d57:fa60)
+#   - Attack Shark Gaming Mice (All Models: X8 Plus, X3, X6, R1, etc.)
+#   - Vendor ID: 1d57 (covers all 18 wired models and 2.4G wireless dongles)
 
-KERNEL=="hidraw*", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="2124", MODE="0666", TAG+="uaccess"
-KERNEL=="hidraw*", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa60", MODE="0666", TAG+="uaccess"
+KERNEL=="hidraw*", ATTRS{idVendor}=="1d57", MODE="0666", TAG+="uaccess"
