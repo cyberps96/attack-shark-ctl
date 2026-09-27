@@ -50,7 +50,22 @@ Attack Shark gaming mice (such as the **X8 Plus**, **X3**, **X6**) pack top-of-t
 
 ## 🚀 Quick Start
 
-### 1. Prerequisites
+### Option A: Pre-Compiled Binary (No Rust required! 🎉)
+For gamers and standard Linux users who don't want to install a compiler:
+
+1. Download the latest tarball from [Releases](https://github.com/cyberps96/attack-shark-ctl/releases/latest).
+2. Extract and run the 1-click installer:
+```bash
+tar -xzf attack-shark-ctl-v0.1.0-x86_64-linux.tar.gz
+cd attack-shark-ctl-v0.1.0-x86_64-linux
+./install.sh
+```
+
+---
+
+### Option B: Build from Source (Developers)
+
+#### 1. Prerequisites
 Make sure you have Rust and `cargo` installed:
 ```bash
 # Fedora / RHEL
@@ -63,7 +78,7 @@ sudo apt update && sudo apt install rustc cargo
 sudo pacman -S rust
 ```
 
-### 2. Build & Install
+#### 2. Build & Install
 Clone the repository and run the automated installer:
 ```bash
 git clone https://github.com/cyberps96/attack-shark-ctl.git
@@ -74,11 +89,8 @@ cargo build --release
 
 # Install binary to ~/.local/bin and enable systemd user daemon
 ./target/release/attack-shark-ctl install
-```
 
-### 3. Setup udev Rules (Non-Root Access)
-To access the mouse without `sudo`:
-```bash
+# Setup udev rules for non-root access
 sudo ./udev/install-udev.sh
 ```
 *(Unplug and replug the mouse or 2.4G dongle once after installing rules).*
