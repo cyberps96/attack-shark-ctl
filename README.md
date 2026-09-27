@@ -173,7 +173,7 @@ Through reverse-engineering the official vendor software (`AttackShark.exe`), we
   - EP0 / Control Transfer: `0xA0` Feature queries
   - EP Interrupt: Output reports on Report ID `0x04` / `0x06`
 - **PixArt PAW3395 Register Formula:**
-  $$\text{DPI} = (\text{raw\_val} + 1) \times 50$$
+  $$\text{DPI} = (\text{raw} + 1) \times 50$$
   *(e.g., raw value `0x29` (41) corresponds to `(41 + 1) * 50 = 2100 DPI`)*
 
 ---
