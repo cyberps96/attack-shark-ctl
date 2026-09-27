@@ -6,14 +6,14 @@
 [![Memory Footprint](https://img.shields.io/badge/RAM_Usage-%3C2.5MB-brightgreen.svg)]()
 [![CPU Usage](https://img.shields.io/badge/CPU_Usage-0.0%25-brightgreen.svg)]()
 
-> A high-performance, bare-metal Linux driver CLI and background daemon for **Attack Shark gaming mice** (PixArt PAW3395 sensor). 
+> A high-performance, bare-metal Linux driver CLI and background daemon for **Attack Shark gaming mice**. 
 > Zero Electron bloat, zero Wine emulation, pure native Rust.
 
 ---
 
 ##  Overview
 
-Attack Shark gaming mice (such as the **X8 Plus**, **X3**, **X6**) pack top-of-the-line hardware: the flagship **PixArt PAW3395 sensor**, up to **40,000 DPI**, and **1000 Hz polling rates**. However, the manufacturer only ships proprietary Windows software (`.exe`).
+Attack Shark gaming mice pack high-performance hardware: advanced PixArt optical sensors, up to **1000 Hz polling rates**, and granular hardware DPI steps. However, the manufacturer only ships proprietary Windows software (`.exe`).
 
 `attack-shark-ctl` brings native 1:1 hardware control to Linux through clean-room reverse-engineered bare-metal USB/HID protocol communication. It features a fast CLI and an ultra-lightweight background systemd daemon that persists settings across reboots and sends desktop OSD notifications on hardware button presses.
 
@@ -24,7 +24,7 @@ Attack Shark gaming mice (such as the **X8 Plus**, **X3**, **X6**) pack top-of-t
 - ** Bare-Metal Linux Driver:** Communicates directly with `/dev/hidraw*` via low-level kernel ioctls and non-blocking polling.
 - ** Smart Dual-Mode Arbitration:** Automatically detects whether the mouse is connected via USB-C cable or 2.4G wireless dongle, hot-swapping dynamically.
 - ** Real-Time Battery Monitoring:** Accurate fuel gauge polling with live charging vs. discharging state detection.
-- ** Full PAW3395 Sensor Range:** Configure sensitivity from **100 to 40,000 DPI** in precise 50-DPI increments using native hardware register math.
+- ** Precise Optical Sensor Range:** Configure sensitivity up to native hardware limits in precise 50-DPI increments using native hardware register math.
 - ** Multi-Stage DPI Profiles:** Full control over all 6 hardware DPI stages and their respective RGB status indicators.
 - ** Polling Rate Switching:** Instant switching between **125 Hz, 250 Hz, 500 Hz, and 1000 Hz**.
 - ** Reboot Persistence:** Remembers your active DPI stage and settings across reboots without resetting to factory defaults.
@@ -204,7 +204,7 @@ Through reverse-engineering the official vendor software (`AttackShark.exe`), we
 - **Endpoint Structure:**
   - EP0 / Control Transfer: `0xA0` Feature queries
   - EP Interrupt: Output reports on Report ID `0x04` / `0x06`
-- **PixArt PAW3395 Register Formula:**
+- **PixArt Optical Sensor Register Formula:**
   $$\text{DPI} = (\text{raw} + 1) \times 50$$
   *(e.g., raw value `0x29` (41) corresponds to `(41 + 1) * 50 = 2100 DPI`)*
 
