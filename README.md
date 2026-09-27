@@ -178,18 +178,6 @@ Through reverse-engineering the official vendor software (`AttackShark.exe`), we
 
 ---
 
-## 🗺️ Roadmap & Upcoming Milestones
-
-- [x] **Phase 1-4:** Core reverse engineering, CLI controls, dual-mode arbitration.
-- [x] **Phase 5:** System integration, persistent state, background daemon, OSD notifications.
-- [ ] **Phase 6:** Advanced sensor tuning (LOD 1mm/2mm, debounce / click latency 0-20ms, factory reset).
-- [ ] **Phase 7:** RGB lighting effects and sleep timer customization.
-- [ ] **Phase 8:** Key remapping & macro engine.
-- [ ] **Phase 9:** Modern GTK4 / Libadwaita desktop GUI & system tray indicator.
-- [ ] **Phase 10:** Multi-device expansion across other OEM models.
-
----
-
 ## ☕ Support the Project
 
 If `attack-shark-ctl` made your mouse work seamlessly on Linux, consider supporting development! Your contributions help keep this project active and fund test samples for other Attack Shark / OEM mice.
