@@ -11,7 +11,7 @@
 
 ---
 
-## ⚡ Overview
+##  Overview
 
 Attack Shark gaming mice (such as the **X8 Plus**, **X3**, **X6**) pack top-of-the-line hardware: the flagship **PixArt PAW3395 sensor**, up to **40,000 DPI**, and **1000 Hz polling rates**. However, the manufacturer only ships proprietary Windows software (`.exe`).
 
@@ -19,18 +19,18 @@ Attack Shark gaming mice (such as the **X8 Plus**, **X3**, **X6**) pack top-of-t
 
 ---
 
-## ✨ Features
+##  Features
 
-- **🦈 Bare-Metal Linux Driver:** Communicates directly with `/dev/hidraw*` via low-level kernel ioctls and non-blocking polling.
-- **🔌 Smart Dual-Mode Arbitration:** Automatically detects whether the mouse is connected via USB-C cable or 2.4G wireless dongle, hot-swapping dynamically.
-- **🔋 Real-Time Battery Monitoring:** Accurate fuel gauge polling with live charging vs. discharging state detection.
-- **🎯 Full PAW3395 Sensor Range:** Configure sensitivity from **100 to 40,000 DPI** in precise 50-DPI increments using native hardware register math.
-- **🪜 Multi-Stage DPI Profiles:** Full control over all 6 hardware DPI stages and their respective RGB status indicators.
-- **⚡ Polling Rate Switching:** Instant switching between **125 Hz, 250 Hz, 500 Hz, and 1000 Hz**.
-- **💾 Reboot Persistence:** Remembers your active DPI stage and settings across reboots without resetting to factory defaults.
-- **🔔 Hardware OSD Notifications:** Triggers desktop notifications (`notify-send`) immediately when the physical DPI switch button is pressed.
-- **🪶 Ultra-Lightweight Daemon:** Uses less than **2.5 MB of RAM** and **0.0% CPU** as an unprivileged user-level systemd service.
-- **🛡️ Secure & Non-Root:** Includes udev rules for complete unprivileged access without requiring `sudo`.
+- ** Bare-Metal Linux Driver:** Communicates directly with `/dev/hidraw*` via low-level kernel ioctls and non-blocking polling.
+- ** Smart Dual-Mode Arbitration:** Automatically detects whether the mouse is connected via USB-C cable or 2.4G wireless dongle, hot-swapping dynamically.
+- ** Real-Time Battery Monitoring:** Accurate fuel gauge polling with live charging vs. discharging state detection.
+- ** Full PAW3395 Sensor Range:** Configure sensitivity from **100 to 40,000 DPI** in precise 50-DPI increments using native hardware register math.
+- ** Multi-Stage DPI Profiles:** Full control over all 6 hardware DPI stages and their respective RGB status indicators.
+- ** Polling Rate Switching:** Instant switching between **125 Hz, 250 Hz, 500 Hz, and 1000 Hz**.
+- ** Reboot Persistence:** Remembers your active DPI stage and settings across reboots without resetting to factory defaults.
+- ** Hardware OSD Notifications:** Triggers desktop notifications (`notify-send`) immediately when the physical DPI switch button is pressed.
+- ** Ultra-Lightweight Daemon:** Uses less than **2.5 MB of RAM** and **0.0% CPU** as an unprivileged user-level systemd service.
+- ** Secure & Non-Root:** Includes udev rules for complete unprivileged access without requiring `sudo`.
 
 ---
 
@@ -48,7 +48,7 @@ Attack Shark gaming mice (such as the **X8 Plus**, **X3**, **X6**) pack top-of-t
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Option A: Pre-Compiled Binary (No Rust required! 🎉)
 For gamers and standard Linux users who don't want to install a compiler:
@@ -115,12 +115,12 @@ Output:
    • Daemon      : 🟢 Running (systemd background service)
 ```
 
-### 🔋 Check Battery
+###  Check Battery
 ```bash
 attack-shark-ctl battery
 ```
 
-### 🎯 DPI Management
+###  DPI Management
 ```bash
 # Get current active DPI stage and value
 attack-shark-ctl get-dpi
@@ -138,7 +138,7 @@ attack-shark-ctl set-stage-dpi 2 2100
 attack-shark-ctl set-ladder 800 1200 1600 2400 3200 6400
 ```
 
-### ⚡ Polling Rate
+###  Polling Rate
 ```bash
 # Read polling rate
 attack-shark-ctl get-rate
@@ -147,7 +147,7 @@ attack-shark-ctl get-rate
 attack-shark-ctl set-rate 1000
 ```
 
-### ⚙️ Daemon Management
+###  Daemon Management
 ```bash
 # Check daemon service status
 systemctl --user status attack-shark.service
@@ -161,7 +161,7 @@ attack-shark-ctl uninstall
 
 ---
 
-## 🔬 Hardware Protocol Architecture
+## Hardware Protocol Architecture
 
 Through reverse-engineering the official vendor software (`AttackShark.exe`), we uncovered the raw USB HID protocol:
 
@@ -182,7 +182,7 @@ Through reverse-engineering the official vendor software (`AttackShark.exe`), we
 
 If `attack-shark-ctl` made your mouse work seamlessly on Linux, consider supporting development! Your contributions help keep this project active and fund test samples for other Attack Shark / OEM mice.
 
-### 🪙 Crypto Donations
+###  Crypto Donations
 
 | Currency | Network | Address |
 | :--- | :--- | :--- |
@@ -190,6 +190,6 @@ If `attack-shark-ctl` made your mouse work seamlessly on Linux, consider support
 
 ---
 
-## 📜 License
+##  License
 
 This project is licensed under the [MIT License](LICENSE).
