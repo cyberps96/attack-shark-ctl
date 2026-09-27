@@ -108,7 +108,7 @@ fn simple_time() -> String {
 #[derive(Parser)]
 #[command(name = "attack-shark-ctl")]
 #[command(author = "Cyber & Antigravity")]
-#[command(version = "0.2.0")]
+#[command(version = "0.1.1")]
 #[command(
     about = "Bare-metal Linux driver CLI for Attack Shark gaming mice (X8 Plus, X3, X6, R1, and all 18 models)",
     long_about = None

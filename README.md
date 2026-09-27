@@ -88,8 +88,8 @@ For gamers and standard Linux users who don't want to install a compiler:
 1. Download the latest tarball from [Releases](https://github.com/cyberps96/attack-shark-ctl/releases/latest).
 2. Extract and run the 1-click installer:
 ```bash
-tar -xzf attack-shark-ctl-v0.1.0-x86_64-linux.tar.gz
-cd attack-shark-ctl-v0.1.0-x86_64-linux
+tar -xzf attack-shark-ctl-v0.1.1-x86_64-linux.tar.gz
+cd attack-shark-ctl-v0.1.1-x86_64-linux
 ./install.sh
 ```
 
