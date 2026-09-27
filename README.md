@@ -178,6 +178,18 @@ Through reverse-engineering the official vendor software (`AttackShark.exe`), we
 
 ---
 
+## ☕ Support the Project
+
+If `attack-shark-ctl` made your mouse work seamlessly on Linux, consider supporting development! Your contributions help keep this project active and fund test samples for other Attack Shark / OEM mice.
+
+### 🪙 Crypto Donations
+
+| Currency | Network | Address |
+| :--- | :--- | :--- |
+| **USDT (Tether)** | **Tron (TRC-20)** | `TStfK2yMPrV5xzXffGaaoMd2CU6RDHTvbg` |
+
+---
+
 ## 📜 License
 
 This project is licensed under the [MIT License](LICENSE).
