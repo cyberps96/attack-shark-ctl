@@ -218,10 +218,13 @@ Through reverse-engineering the official vendor software (`AttackShark.exe`), we
 
 If `attack-shark-ctl` made your mouse work seamlessly on Linux, consider supporting development! Your contributions help keep this project active and fund test samples for other Attack Shark / OEM mice.
 
-###  Crypto Donations
+### 💰 Crypto Donations
 
 | Currency | Network | Address |
 | :--- | :--- | :--- |
+| **Bitcoin (BTC)** | **Bitcoin (SegWit)** | `bc1q3hefk7fswsgq5zxed05vy0v4rt2qks90en5mjp` |
+| **Solana (SOL)** | **Solana** | `cQiSktSJbtLNEpZZwsKw8NxEpdXeLKTKXDnCccS6f9g` |
+| **Litecoin (LTC)** | **Litecoin** | `LLdkGKhNdWJwRjHm4RERn9qnEuCzRBAnZK` |
 | **USDT (Tether)** | **Tron (TRC-20)** | `TStfK2yMPrV5xzXffGaaoMd2CU6RDHTvbg` |
 
 ---
