@@ -13,7 +13,7 @@
 
 ##  Overview
 
-Attack Shark gaming mice pack high-performance hardware: advanced PixArt optical sensors, up to **1000 Hz polling rates**, and granular hardware DPI steps. However, the manufacturer only ships proprietary Windows software (`.exe`).
+Attack Shark gaming mice pack high-performance hardware: advanced PixArt optical sensors, up to **8000 Hz polling rates**, and granular hardware DPI steps. However, the manufacturer only ships proprietary Windows software (`.exe`).
 
 `attack-shark-ctl` brings native 1:1 hardware control to Linux through clean-room reverse-engineered bare-metal USB/HID protocol communication. It features a fast CLI and an ultra-lightweight background systemd daemon that persists settings across reboots and sends desktop OSD notifications on hardware button presses.
 
