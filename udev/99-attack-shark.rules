@@ -6,3 +6,7 @@
 #   - Vendor ID: 1d57 (covers all 18 wired models and 2.4G wireless dongles)
 
 KERNEL=="hidraw*", ATTRS{idVendor}=="1d57", MODE="0666", TAG+="uaccess"
+
+# Disable USB runtime autosuspend to ensure zero-latency 1000Hz polling on 2.4G dongles & USB
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1d57", TEST=="power/control", ATTR{power/control}="on", ATTR{power/autosuspend}="-1"
+

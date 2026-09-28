@@ -21,16 +21,17 @@ Attack Shark gaming mice pack high-performance hardware: advanced PixArt optical
 
 ##  Features
 
-- ** Bare-Metal Linux Driver:** Communicates directly with `/dev/hidraw*` via low-level kernel ioctls and non-blocking polling.
-- ** Smart Dual-Mode Arbitration:** Automatically detects whether the mouse is connected via USB-C cable or 2.4G wireless dongle, hot-swapping dynamically.
-- ** Real-Time Battery Monitoring:** Accurate fuel gauge polling with live charging vs. discharging state detection.
-- ** Precise Optical Sensor Range:** Configure sensitivity up to native hardware limits in precise 50-DPI increments using native hardware register math.
-- ** Multi-Stage DPI Profiles:** Full control over all 6 hardware DPI stages and their respective RGB status indicators.
-- ** Polling Rate Switching:** Instant switching between **125 Hz, 250 Hz, 500 Hz, and 1000 Hz**.
-- ** Reboot Persistence:** Remembers your active DPI stage and settings across reboots without resetting to factory defaults.
-- ** Hardware OSD Notifications:** Triggers desktop notifications (`notify-send`) immediately when the physical DPI switch button is pressed.
-- ** Ultra-Lightweight Daemon:** Uses less than **2.5 MB of RAM** and **0.0% CPU** as an unprivileged user-level systemd service.
-- ** Secure & Non-Root:** Includes udev rules for complete unprivileged access without requiring `sudo`.
+- **⚡ Bare-Metal Linux Driver:** Communicates directly with `/dev/hidraw*` via low-level kernel ioctls and non-blocking polling.
+- **🔄 Smart Dual-Mode Arbitration:** Automatically detects whether the mouse is connected via USB-C cable or 2.4G wireless dongle, hot-swapping dynamically.
+- **🚀 Zero-Latency 1000 Hz Wireless:** Includes automated udev power rules preventing Linux runtime USB autosuspend, eliminating pause-resume wake-up hesitation.
+- **🔋 Real-Time Battery Monitoring:** Accurate fuel gauge polling with live charging vs. discharging state detection.
+- **🎯 Precise Optical Sensor Range:** Configure sensitivity up to native hardware limits in precise 50-DPI increments using native hardware register math.
+- **📊 Multi-Stage DPI Profiles & Live Sync:** Full control over all 6 hardware DPI stages; persistent state cache keeps the background daemon in sync with physical button presses instantly.
+- **⏱️ Polling Rate Switching:** Instant switching between **125 Hz, 250 Hz, 500 Hz, and 1000 Hz**.
+- **💾 Reboot Persistence:** Remembers your active DPI stage and settings across reboots without resetting to factory defaults.
+- **🔔 Hardware OSD Notifications:** Triggers desktop notifications (`notify-send`) immediately when the physical DPI switch button is pressed.
+- **🪶 Ultra-Lightweight Daemon:** Uses less than **2.5 MB of RAM** and **0.0% CPU** as an unprivileged user-level systemd service.
+- **🔒 Secure & Non-Root:** Includes udev rules for complete unprivileged access without requiring `sudo`.
 
 ---
 

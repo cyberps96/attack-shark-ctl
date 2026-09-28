@@ -68,6 +68,40 @@ fn set_cached_battery(pct: u8) {
     let _ = std::fs::write("/tmp/attack-shark-battery", pct.to_string());
 }
 
+fn get_cached_dpi_stages() -> Option<Vec<u32>> {
+    let parse_content = |s: String| -> Option<Vec<u32>> {
+        let dpis: Vec<u32> = s
+            .split_whitespace()
+            .filter_map(|p| p.parse::<u32>().ok())
+            .collect();
+        if dpis.len() == 6 {
+            Some(dpis)
+        } else {
+            None
+        }
+    };
+
+    if let Ok(s) = std::fs::read_to_string(state_dir().join("dpi_stages")) {
+        if let Some(dpis) = parse_content(s) {
+            return Some(dpis);
+        }
+    }
+    std::fs::read_to_string("/tmp/attack-shark-dpi-stages")
+        .ok()
+        .and_then(parse_content)
+}
+
+fn set_cached_dpi_stages(dpis: &[u32]) {
+    let content = dpis
+        .iter()
+        .map(|d| d.to_string())
+        .collect::<Vec<_>>()
+        .join(" ");
+    let _ = std::fs::write(state_dir().join("dpi_stages"), &content);
+    let _ = std::fs::write("/tmp/attack-shark-dpi-stages", &content);
+}
+
+
 fn format_battery_status(status_code: u8) -> &'static str {
     match status_code {
         2 => "Charging ⚡",
@@ -494,6 +528,8 @@ fn main() {
             print!("   • Active DPI  : ");
             match dev.get_dpi_config() {
                 Ok(cfg) => {
+                    let dpis: Vec<u32> = cfg.stages.iter().map(|s| s.dpi).collect();
+                    set_cached_dpi_stages(&dpis);
                     let live_stage = get_live_stage();
                     let (active_stage, active_dpi, is_live) = if let Some(ls) = live_stage {
                         let dpi = cfg.stages[(ls - 1) as usize].dpi;
@@ -501,6 +537,7 @@ fn main() {
                     } else {
                         (cfg.active_stage_idx + 1, cfg.get_active_dpi(), false)
                     };
+
                     println!(
                         "{} DPI (Stage {}){}",
                         active_dpi,
@@ -621,7 +658,8 @@ fn main() {
                         continue 'reconnect;
                     }
                 };
-                let stage_dpis: Vec<u32> = cfg.stages.iter().map(|s| s.dpi).collect();
+                let mut stage_dpis: Vec<u32> = cfg.stages.iter().map(|s| s.dpi).collect();
+                set_cached_dpi_stages(&stage_dpis);
 
                 println!("[{}] 🟢 Connected to mouse on {:?}", simple_time(), dev.path);
 
@@ -668,6 +706,10 @@ fn main() {
 
                                         if (1..=6).contains(&detected_stage) {
                                             set_live_stage(detected_stage);
+                                            // Live sync DPI ladder from state cache in case CLI updated it
+                                            if let Some(cached) = get_cached_dpi_stages() {
+                                                stage_dpis = cached;
+                                            }
                                             let dpi_val = stage_dpis
                                                 .get((detected_stage - 1) as usize)
                                                 .copied()
@@ -801,12 +843,15 @@ fn main() {
             println!("📡 Reading DPI configuration from mouse internal flash...");
             match dev.get_dpi_config() {
                 Ok(cfg) => {
+                    let dpis: Vec<u32> = cfg.stages.iter().map(|s| s.dpi).collect();
+                    set_cached_dpi_stages(&dpis);
                     let live_stage = get_live_stage();
                     let active_idx = if let Some(ls) = live_stage {
                         ls - 1
                     } else {
                         cfg.active_stage_idx
                     };
+
 
                     println!("\n╔═══════════════════════════════════╗");
                     println!("║        Attack Shark Presets       ║");
@@ -880,6 +925,8 @@ fn main() {
                 );
                 match dev.set_dpi_config(&cfg) {
                     Ok(()) => {
+                        let dpis: Vec<u32> = cfg.stages.iter().map(|s| s.dpi).collect();
+                        set_cached_dpi_stages(&dpis);
                         println!("✅ Successfully programmed ALL 6 stages to {} DPI!", dpi);
                         println!("   The physical DPI button will now stay locked at {} DPI.", dpi);
                     }
@@ -902,6 +949,8 @@ fn main() {
 
                 match dev.set_dpi_config(&cfg) {
                     Ok(()) => {
+                        let dpis: Vec<u32> = cfg.stages.iter().map(|s| s.dpi).collect();
+                        set_cached_dpi_stages(&dpis);
                         println!("✅ Successfully updated Stage {} to {} DPI!", active_stage, dpi);
                         println!("   Setting is permanently saved in mouse flash memory.");
                     }
@@ -942,6 +991,8 @@ fn main() {
             );
             match dev.set_dpi_config(&cfg) {
                 Ok(()) => {
+                    let dpis: Vec<u32> = cfg.stages.iter().map(|s| s.dpi).collect();
+                    set_cached_dpi_stages(&dpis);
                     println!("✅ Successfully programmed ALL 6 stages to {} DPI!", dpi);
                     println!("   The physical DPI button will now stay locked at {} DPI.", dpi);
                 }
@@ -983,6 +1034,8 @@ fn main() {
             match dev.set_dpi_config(&cfg) {
                 Ok(()) => {
                     set_live_stage(stage);
+                    let dpis: Vec<u32> = cfg.stages.iter().map(|s| s.dpi).collect();
+                    set_cached_dpi_stages(&dpis);
                     println!("✅ Successfully switched active DPI to Stage {} ({} DPI)!", stage, new_dpi);
                 }
                 Err(e) => {
@@ -1044,6 +1097,8 @@ fn main() {
 
             match dev.set_dpi_config(&cfg) {
                 Ok(()) => {
+                    let dpis: Vec<u32> = cfg.stages.iter().map(|s| s.dpi).collect();
+                    set_cached_dpi_stages(&dpis);
                     println!("✅ Successfully programmed Stage {} to {} DPI!", stage, target_dpi);
                 }
                 Err(e) => {
@@ -1085,6 +1140,8 @@ fn main() {
 
             match dev.set_dpi_config(&cfg) {
                 Ok(()) => {
+                    let dpis: Vec<u32> = cfg.stages.iter().map(|s| s.dpi).collect();
+                    set_cached_dpi_stages(&dpis);
                     set_live_stage(cfg.active_stage_idx + 1);
                     println!("✅ Successfully programmed all 6 stages!");
                     println!("   Now pressing the physical DPI button will cycle through these exact speeds.");

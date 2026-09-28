@@ -12,10 +12,12 @@ if [ "$EUID" -ne 0 ]; then
     sudo cp "$RULE_SRC" "$DEST"
     sudo udevadm control --reload-rules
     sudo udevadm trigger --subsystem-match=hidraw
+    sudo udevadm trigger --subsystem-match=usb
 else
     cp "$RULE_SRC" "$DEST"
     udevadm control --reload-rules
     udevadm trigger --subsystem-match=hidraw
+    udevadm trigger --subsystem-match=usb
 fi
 
 echo "✅ udev rules successfully installed and reloaded!"
